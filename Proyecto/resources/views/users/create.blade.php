@@ -9,7 +9,7 @@
 <body>
     <h1>CREAR USUARIO</h1>
 
-    <form method="POST" action="{{route('users.store')}}">
+    <form method="POST" action="{{route('author.store')}}">
         @csrf
         <label>
             ID  <br>
