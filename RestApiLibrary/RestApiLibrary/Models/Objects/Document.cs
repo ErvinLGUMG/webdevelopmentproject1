@@ -15,13 +15,15 @@ namespace RestApiLibrary.Models.Objects
         public int DocumentId { get; set; }
         [StringLength(250, MinimumLength = 5)]
         public string Title { get; set; }
+        [StringLength(500, MinimumLength = 5)]
+        public string Description { get; set; }
         [Url]
         public string ImagenPath { get; set; }
         [Url]
         public string PdfPath { get; set; }
         public int Private { get; set; }
 
-        [ForeignKey("SystemUser"), Column("OwnerId")]
+        [ForeignKey("SystemUser"), Column("OwnerId")]   
         public string UserId { get; set; }
         public SystemUser SystemUser { get; set; }
 

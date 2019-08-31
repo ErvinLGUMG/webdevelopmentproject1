@@ -58,6 +58,7 @@ namespace RestApiLibrary.Migrations
                     {
                         DocumentId = c.Int(nullable: false, identity: true),
                         Title = c.String(maxLength: 250, storeType: "nvarchar"),
+                        Description = c.String(maxLength: 500, storeType: "nvarchar"),
                         ImagenPath = c.String(unicode: false),
                         PdfPath = c.String(unicode: false),
                         Private = c.Int(nullable: false),

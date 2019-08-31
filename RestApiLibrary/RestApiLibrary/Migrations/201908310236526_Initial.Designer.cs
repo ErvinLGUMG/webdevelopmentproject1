@@ -13,7 +13,7 @@ namespace RestApiLibrary.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201908270312494_Initial"; }
+            get { return "201908310236526_Initial"; }
         }
         
         string IMigrationMetadata.Source
