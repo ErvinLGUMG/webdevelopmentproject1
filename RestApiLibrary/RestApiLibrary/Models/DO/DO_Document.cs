@@ -18,9 +18,89 @@ namespace RestApiLibrary.Models.DO
             this.dbLibrary = dbLibrary;
         }
         /// <summary>
-        /// Devuelve todos los registros
+        /// Metodo que agrupa los libros por autor
         /// </summary>
         /// <returns></returns>
+        public List<Reportes.BookAuthor> GetListAuthor()
+        {
+            try
+            {
+                List<Reportes.BookAuthor> listAuthor = new List<Reportes.BookAuthor>();
+                List<Reportes.Book> listBooks;
+                Reportes.BookAuthor bookAuthor;
+                Reportes.Book Books;
+                
+                foreach (Author item in dbLibrary.tc_Author.ToList())
+                {
+                    bookAuthor = new Reportes.BookAuthor();
+                    bookAuthor.AuthorId = item.AuthorlId;
+                    bookAuthor.AuthorName = item.Name;
+
+                    listBooks = new List<Reportes.Book>();
+                    foreach (Document itemDocument in dbLibrary.tc_Document.Where(a=> a.AuthorId == item.AuthorlId).ToList())
+                    {
+                        Books = new Reportes.Book();
+                        Books.DocumentId = itemDocument.DocumentId;
+                        Books.Description = itemDocument.Description;
+                        Books.Title = itemDocument.Title;
+                        listBooks.Add(Books);
+                    }
+                    bookAuthor.Books = listBooks;
+                    listAuthor.Add(bookAuthor);
+                }
+
+                return listAuthor;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Metodo que agrupa los libros por categoria
+        /// </summary>
+        /// <returns></returns>
+        public List<Reportes.BookCategory> GetListCategory()
+        {
+            try
+            {
+                List<Reportes.BookCategory> listCategory = new List<Reportes.BookCategory>();
+                Reportes.BookCategory bookCategory;
+                List<Reportes.Book> listBooks;
+                Reportes.Book Books;
+                foreach (Category item in dbLibrary.tc_Category.ToList())
+                {
+                    bookCategory = new Reportes.BookCategory();
+                    bookCategory.CategoryId = item.CategoryId;
+                    bookCategory.CategoryName = item.Name;
+                    listBooks = new List<Reportes.Book>();
+                    foreach (Document itemDocument in dbLibrary.tc_Document.Where(a => a.CategoryId == item.CategoryId).ToList())
+                    {
+                        Books = new Reportes.Book();
+                        Books.DocumentId = itemDocument.DocumentId;
+                        Books.Description = itemDocument.Description;
+                        Books.Title = itemDocument.Title;
+                        listBooks.Add(Books);
+                    }
+                    bookCategory.Books = listBooks;
+                    listCategory.Add(bookCategory);
+                }
+
+                return listCategory;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+            /// <summary>
+            /// Devuelve todos los registros
+            /// </summary>
+            /// <returns></returns>
         public List<Document> GetAll()
         {
             try

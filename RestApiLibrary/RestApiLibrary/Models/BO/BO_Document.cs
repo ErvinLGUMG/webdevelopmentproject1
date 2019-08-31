@@ -18,6 +18,32 @@ namespace RestApiLibrary.Models.BO
             doDocument = new DO_Document(this.dbLibrary);
         }
 
+        public List<LibraryObject> GetListAuthor()
+        {
+            try
+            {
+                return doDocument.GetListAuthor().Cast<LibraryObject>().ToList();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<LibraryObject> GetListCategory()
+        {
+            try
+            {
+                return doDocument.GetListCategory().Cast<LibraryObject>().ToList();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public List<LibraryObject> GetAll()
         {
             try

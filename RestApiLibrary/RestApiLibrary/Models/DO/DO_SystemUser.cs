@@ -8,7 +8,7 @@ using RestApiLibrary.Models.Objects;
 
 namespace RestApiLibrary.Models.DO
 {
-    public class DO_SystemUser 
+    public class DO_SystemUser
     {
         private DbLibrary dbLibrary;
         private StringBuilder regOperacion;
@@ -17,6 +17,36 @@ namespace RestApiLibrary.Models.DO
         {
             this.dbLibrary = dbLibrary;
         }
+
+
+        public LoginUser GetLogin(string userId, string password)
+        {
+            try
+            {
+                LoginUser loginUser = new LoginUser();
+                
+                SystemUser user = dbLibrary.tc_SystemUser.Where(a => a.UserId == userId && a.Password == password).FirstOrDefault();
+                if (user == null)
+                {
+                    loginUser.Estado = false;
+                    return loginUser;
+                }
+                loginUser.UserName = user.Name;
+                loginUser.Estado = true;
+                loginUser.UserId = user.UserId;
+                loginUser.RoleId = dbLibrary.tc_SystemUserRol.Where(a => a.UserId == user.UserId).Select(a=> a.RolId).FirstOrDefault();
+                loginUser.Permisision = dbLibrary.tc_SystemRolePermission.Where(a => a.RolId == loginUser.RoleId).ToList();
+
+                return loginUser;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         /// <summary>
         /// Devuelve la lista de usuarios
         /// </summary>

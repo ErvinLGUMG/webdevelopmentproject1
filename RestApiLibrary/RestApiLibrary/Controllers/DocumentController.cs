@@ -16,6 +16,44 @@ namespace RestApiLibrary.Controllers
     [RoutePrefix("api/Document")]
     public class DocumentController : ApiController
     {
+
+
+        // GET api/Document/ListAuthor
+        [Route("ListAuthor")]
+        public HttpResponseMessage GetListAuthor()
+        {
+            try
+            {
+                DbLibrary dbLibrary = new DbLibrary();
+                BO_Document boDocument = new BO_Document(dbLibrary);
+                DataMessage dataMessage = new DataMessage(boDocument.GetListAuthor());
+                return Request.CreateResponse(HttpStatusCode.OK, dataMessage);
+            }
+            catch (Exception e)
+            {
+                ErrorMessage mensaje = new ErrorMessage("2.1", "Excepción en la obtención del listado: " + e.GetBaseException().Message, e.ToString());
+                return Request.CreateResponse(HttpStatusCode.BadRequest, mensaje);
+            }
+        }
+
+        // GET api/Document/ListCategory
+        [Route("ListCategory")]
+        public HttpResponseMessage GetListCategory()
+        {
+            try
+            {
+                DbLibrary dbLibrary = new DbLibrary();
+                BO_Document boDocument = new BO_Document(dbLibrary);
+                DataMessage dataMessage = new DataMessage(boDocument.GetListCategory());
+                return Request.CreateResponse(HttpStatusCode.OK, dataMessage);
+            }
+            catch (Exception e)
+            {
+                ErrorMessage mensaje = new ErrorMessage("2.1", "Excepción en la obtención del listado: " + e.GetBaseException().Message, e.ToString());
+                return Request.CreateResponse(HttpStatusCode.BadRequest, mensaje);
+            }
+        }
+
         // GET api/Document/ListDocument
         [Route("ListDocument")]
         public HttpResponseMessage GetAll()
