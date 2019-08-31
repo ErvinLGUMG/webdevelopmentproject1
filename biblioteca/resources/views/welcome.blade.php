@@ -86,12 +86,11 @@
 
                 <div class="links">
                     @foreach ($menu as $item)
-                        @foreach ($item as $Value)
-                        <a href="{{ route('biblioteca.inicio', $Value->Name)}}">{{$Value->Name}}</a>
+                        @foreach ($item as $value)
+                        <a href="{{ route('biblioteca.inicio', [$value->CategoryId, $value->Name])}}">{{$value->Name}}</a>
                         @endforeach
 
                     @endforeach
-
                 </div>
             </div>
         </div>

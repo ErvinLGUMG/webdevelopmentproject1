@@ -40,7 +40,7 @@
    <!-- Header -->
     <div class="row" style="height: 75px;">
       <div class="col-lg-4">
-          logo
+          <img src="{{asset('img/apache.png')}}" height="75" alt="">
       </div>
       <div class="col-lg-8" >
         @if (Route::has('login'))
@@ -69,19 +69,15 @@
           <a class="nav-link" href="{{ route('inicio')}}">Home <span class="sr-only">(current)</span></a>
           </li>
           @foreach ($menu as $item)
-
             @foreach ($item as $value)
-
             <li class="nav-item ">
-            <a class="nav-link " href="{{ route('biblioteca.inicio', $value->Name) }}">{{$value->Name}}</a>
+            <a class="nav-link " href="{{ route('biblioteca.inicio', [$value->CategoryId, $value->Name]) }}">{{$value->Name}}</a>
             </li>
-
-
             @endforeach
-
-
-
           @endforeach
+            <li class="nav-item ">
+                <a class="nav-link " href="{{ route('biblioteca.inicio', ['99', 'All']) }}">All</a>
+            </li>
         </ul>
       </div>
     </nav>

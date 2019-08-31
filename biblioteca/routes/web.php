@@ -17,7 +17,29 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/Biblioteca/{id}', 'BibliotecaController@cursos')->name('biblioteca.inicio');
+Route::get('/Biblioteca/{id}/{name}', 'BibliotecaController@cursos')->name('biblioteca.inicio');
 
 Route::get('/Detalle/{id}', 'BibliotecaController@detalle')->name('detalle');
 
+Route::get('/permisos','PermissionController@index')->name('permissions.index');
+Route::get('/permisos/crear','PermissionController@create')->name('permissions.create');
+Route::post('/permisos','PermissionController@store')->name('permissions.store');
+Route::get('/permisos/{Name}','PermissionController@show')->name('permissions.show');
+
+Route::get('/usuarios','UserController@index')->name('users.index');
+Route::post('/usuarios','UserController@store')->name('users.store');
+Route::get('/usuarios/crear','UserController@create')->name('users.create');
+Route::get('/usuarios/{Name}','UserController@show')->name('users.show');
+
+Route::get('/roles','RolController@index')->name('roles.index');
+Route::post('/roles/crear','RolController@store')->name('roles.store');
+Route::get('/roles/{Name}','RolController@show')->name('roles.show');
+
+Route::post('/autores','AuthorController@store')->name('authors.store');
+Route::get('/autores/crear','AuthorController@create')->name('authors.create');
+
+Route::post('/libros','BookController@store')->name('books.store');
+Route::get('/libros/crear','BookController@create')->name('books.create');
+
+Route::post('/signIn','SignInController@store')->name('signIn');
+//Route::get('/signIn','SignInController@store')->name('loginStore');
