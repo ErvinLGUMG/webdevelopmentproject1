@@ -352,6 +352,7 @@
     <Compile Include="Models\Objects\Editorial.cs" />
     <Compile Include="Models\Objects\Language.cs" />
     <Compile Include="Models\Objects\LibraryObject.cs" />
+    <Compile Include="Models\Objects\LoginUser.cs" />
     <Compile Include="Models\Objects\Operations.cs" />
     <Compile Include="Models\Objects\Reportes.cs" />
     <Compile Include="Models\Objects\SystemPermissions.cs" />

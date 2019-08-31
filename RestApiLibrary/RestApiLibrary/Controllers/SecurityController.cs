@@ -17,6 +17,28 @@ namespace RestApiLibrary.Controllers
     [RoutePrefix("api/Security")]
     public class SecurityController : ApiController
     {
+
+        // POST api/Security/LoginUser
+        [Route("LoginUser")]
+        public HttpResponseMessage PostLogin(User user)
+        {
+            try
+            {
+                DbLibrary dbLibrary = new DbLibrary();
+                BO_SystemUser boSystemUser = new BO_SystemUser(dbLibrary);
+                DataMessage dataMessage = new DataMessage(boSystemUser.GetLogin(user.username, user.password));
+                return Request.CreateResponse(HttpStatusCode.OK, dataMessage);
+            }
+            catch (Exception e)
+            {
+                ErrorMessage mensaje = new ErrorMessage("2.1", "Excepción en la obtención del listado de usuarios: " + e.GetBaseException().Message, e.ToString());
+                return Request.CreateResponse(HttpStatusCode.BadRequest, mensaje);
+            }
+        }
+
+
+
+
         // GET api/Security/ListUsers
         [Route("ListUsers")]
         public HttpResponseMessage GetUsers()

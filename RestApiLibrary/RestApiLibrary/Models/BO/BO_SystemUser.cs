@@ -18,6 +18,18 @@ namespace RestApiLibrary.Models.BO
             doSystemUser = new DO_SystemUser(this.dbLibrary);
         }
 
+        public LibraryObject GetLogin(string userId, string password)
+        {
+            try
+            {
+                return doSystemUser.GetLogin(userId, password);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         public List<LibraryObject> GetAll()
         {
             try
