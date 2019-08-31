@@ -10,7 +10,7 @@
     <h1>CREAR PERMISO</h1>
 
     <form method="POST" action="{{route('permissions.store')}}">
-        {{-- @csrf --}}
+        @csrf
         <label>
             ID del Permiso <br>
              <input type="text" name="id" value="PRB" {{--value="{{ old('title',$project->title)}}  "--}} required>

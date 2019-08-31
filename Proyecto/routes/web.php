@@ -29,5 +29,10 @@ Route::get('/roles','RolController@index')->name('roles.index');
 Route::post('/roles/crear','RolController@store')->name('roles.store');
 Route::get('/roles/{Name}','RolController@show')->name('roles.show');
 
+Route::post('/autores','AuthorController@store')->name('authors.store');
+Route::get('/autores/crear','AuthorController@create')->name('authors.create');
+
+Route::post('/libros','BookController@store')->name('books.store');
+Route::get('/libros/crear','BookController@create')->name('books.create');
 
 

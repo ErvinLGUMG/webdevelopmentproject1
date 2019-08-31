@@ -36,23 +36,19 @@ class PermissionController extends Controller
 
     public function store()
     {
-        // $response = $client->request('POST', '40.117.209.118/libraryapi/api/Security/CreateRol', [
-        //     'form_params' => [
+        return request();
+        // $client = new Client([
+        //     'headers'=>['Content-Type' => 'application/json']
+        //  ]);
+        //  $response = $client->post('40.117.209.118/libraryapi/api/Security/CreatePermissions', [
+        //     'body'=>json_encode([
         //         'PermissionsId' => request('id'),
         //         'Name' => request('name'),
         //         'State' => request('state')
-        //     ]
-        // ]);
-
-        $client = new \GuzzleHttp\Client();
-        $response = $client->post('40.117.209.118/libraryapi/api/Security/CreateRol', [
-            'form_params' => [
-                'PermissionsId' => request('id'),
-                'Name' => request('name'),
-                'State' => request('state')
-            ]
-        ]);
-        // return redirect()->route('permissions.index');
+        //     ])
+        //  ]);
+        //  return $response->getBody();
+        //return redirect()->route('permissions.index');
     }
 
     /**
